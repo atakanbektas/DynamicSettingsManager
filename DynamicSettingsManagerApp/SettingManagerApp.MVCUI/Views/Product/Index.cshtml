@@ -1,13 +1,12 @@
-﻿@model ProductConfigVM
+﻿@* @model ProductConfigVM
 
 @{
     ViewData["Title"] = "Index";
 }
 
-
 <div class="d-flex justify-content-center bg-warning gap-3 flex-wrap border border-secondary border-5">
-<h1 class="text-center">Configuration Settings</h1>
-    <table class="table table-bordered table-hover  color-white">
+    <h1 class="text-center">Configuration Settings</h1>
+    <table class="table table-bordered table-hover color-white">
         <thead>
             <tr>
                 <th class="text-center">Service Name</th>
@@ -16,7 +15,7 @@
                 <th class="text-center">Type</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="configTableBody">
             @foreach (var config in Model.Configurations)
             {
                 <tr>
@@ -30,6 +29,134 @@
     </table>
 </div>
 
+<hr />
+<div class="text-center">
+    <h1>Ürün Listesi</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-success">Ürün Oluştur</a>
+        <a asp-action="DeleteAll" class="btn btn-danger">Tümünü Sil</a>
+    </p>
+
+    <h2>Products</h2>
+
+    <div class="d-flex flex-wrap" id="productList">
+        @foreach (var product in Model.Products)
+        {
+            <div class="card m-2" style="width: 18rem;">
+                <img class="card-img-top" src="@product.PhotoURL" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <a href="#" class="btn btn-primary">@product.Price ₺</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- TempData Alert -->
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        alert('@TempData["AlertMessage"]');
+    </script>
+}
+
+<!-- SignalR Kütüphanesi -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+
+<script>
+    // SignalR bağlantısını başlat
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/configHub")
+        .build();
+
+    // Bağlantıyı başlat ve sunucudan gelen mesajları dinlemeye başla
+    connection.start().then(function () {
+        console.log("SignalR connected.");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    // Sunucudan gelen konfigürasyon güncellemelerini dinleyin
+    connection.on("ReceiveConfigUpdate", function (name, value) {
+        // Gelen güncelleme mesajını işleyin
+        console.log(`Config updated: ${name} = ${value}`);
+
+        // Mevcut konfigürasyon tablosunu güncelleyin
+        updateConfigTable(name, value);
+    });
+
+    // Sunucudan gelen ürün güncellemelerini dinleyin (örnek)
+    connection.on("ReceiveProductUpdate", function (product) {
+        // Gelen ürün güncellemesini işleyin
+        console.log(`New product added: ${product.Name}`);
+
+        // Ürün listesine yeni ürünü ekleyin
+        addProductToList(product);
+    });
+
+    // Konfigürasyon tablosunu güncellemek için kullanılacak fonksiyon
+    function updateConfigTable(name, value) {
+        const tableBody = document.getElementById("configTableBody");
+        const newRow = `<tr>
+                                <td class="text-center">Service Name</td>
+                                <td class="text-center">${name}</td>
+                                <td class="text-center">${value}</td>
+                                <td class="text-center">Updated Type</td>
+                            </tr>`;
+        tableBody.innerHTML += newRow; // Yeni satır eklenir
+    }
+
+    // Ürün listesine yeni ürün eklemek için kullanılacak fonksiyon
+    function addProductToList(product) {
+        const productList = document.getElementById("productList");
+        const newCard = `<div class="card m-2" style="width: 18rem;">
+                                <img class="card-img-top" src="${product.PhotoURL}" alt="Product image">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.Name}</h5>
+                                    <a href="#" class="btn btn-primary">${product.Price} ₺</a>
+                                </div>
+                             </div>`;
+        productList.innerHTML += newCard; // Yeni ürün kartı eklenir
+    }
+</script> *@
+
+
+
+
+
+
+@model ProductConfigVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="d-flex justify-content-center bg-warning gap-3 flex-wrap border border-secondary border-5">
+    <h1 class="text-center">Configuration Settings</h1>
+    <table class="table table-bordered table-hover color-white">
+        <thead>
+            <tr>
+                <th class="text-center">Service Name</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Value</th>
+                <th class="text-center">Type</th>
+            </tr>
+        </thead>
+        <tbody id="configTableBody">
+            @foreach (var config in Model.Configurations)
+            {
+                <tr>
+                    <td class="text-center">@config.ApplicationName</td>
+                    <td class="text-center">@config.Name</td>
+                    <td class="text-center">@config.Value</td>
+                    <td class="text-center">@config.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <hr />
 <div class="text-center">
@@ -40,35 +167,84 @@
         <a asp-action="DeleteAll" class="btn btn-danger">Tümünü Sil</a>
     </p>
 
-
-
-
     <h2>Products</h2>
 
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap" id="productList">
         @foreach (var product in Model.Products)
         {
-            <div class="card" style="width: 18rem;">
+            <div class="card m-2" style="width: 18rem;">
                 <img class="card-img-top" src="@product.PhotoURL" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@product.Name</h5>
-                <a href="#" class="btn btn-primary">@product.Price ₺</a>
+                    <a href="#" class="btn btn-primary">@product.Price ₺</a>
                 </div>
             </div>
         }
-
     </div>
-
 </div>
 
 
-<!-- Index.cshtml -->
+
+<!-- SignalR Kütüphanesi -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+
+<script>
+    // SignalR bağlantısını başlat
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/configHub")
+        .build();
+
+    // Bağlantıyı başlat
+    connection.start().then(function () {
+        console.log("SignalR connected.");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    // Sunucudan "UpdateConfig" mesajı geldiğinde çalışacak
+    connection.on("UpdateConfig", function (appName) {
+        appName = "SERVICE-PRODUCT";
+        // AJAX ile belirli bir uygulamanın verilerini çek
+        fetchUpdatedConfigs(appName);
+    });
+
+    // AJAX ile sunucudan güncel konfigürasyonları çekme fonksiyonu
+    function fetchUpdatedConfigs(appName) {
+        $.ajax({
+            url: '/Config/GetUpdatedConfigs',  // Sunucuda verileri çeken endpoint
+            type: 'GET',
+            data: { appName: appName },  // Parametre olarak appName'i gönderiyoruz
+            success: function (result) {
+                // Gelen verilerle tabloyu güncelle
+                updateConfigTable(result);
+            },
+            error: function (err) {
+                console.error("Error fetching updated configs:", err);
+            }
+        });
+    }
+
+    // Gelen verilerle tabloyu güncelleyen fonksiyon
+    function updateConfigTable(configurations) {
+        const tableBody = document.getElementById("configTableBody");
+        tableBody.innerHTML = "";  // Tabloyu temizle
+
+        // Yeni verilerle tabloyu doldur
+        configurations.forEach(function (config) {
+            const newRow = `<tr>
+                                    <td class="text-center">${config.applicationName}</td>
+                                    <td class="text-center">${config.name}</td>
+                                    <td class="text-center">${config.value}</td>
+                                    <td class="text-center">${config.type}</td>
+                                </tr>`;
+            tableBody.innerHTML += newRow;  // Yeni satırları tabloya ekle
+        });
+    }
+</script>
+
 @if (TempData["AlertMessage"] != null)
 {
     <script>
         alert('@TempData["AlertMessage"]');
     </script>
 }
-
-
-

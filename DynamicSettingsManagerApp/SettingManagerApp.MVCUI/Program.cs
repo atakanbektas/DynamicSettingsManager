@@ -1,5 +1,6 @@
 using SettingManagerApp.Persistence;
 using SettingManagerApp.Persistence.Context;
+using SettingManagerApp.Persistence.Hubs;
 using System.Text;
 
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddPersistenceServices();
+builder.Services.AddSignalR();
 
 
 var app = builder.Build();
@@ -36,5 +38,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<ConfigHub>("/configHub");
 
 app.Run();

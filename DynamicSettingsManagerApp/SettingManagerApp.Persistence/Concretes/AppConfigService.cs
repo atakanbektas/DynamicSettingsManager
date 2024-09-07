@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using SettingManagerApp.Domain.Entities;
+using SettingManagerApp.Persistence.Hubs;
 using SettingsManagerApp.Application;
 using SettingsManagerApp.Application.Services;
 using System;
@@ -14,19 +16,42 @@ namespace SettingManagerApp.Persistence.Concretes
     {
 
         private readonly IUnitOfWork _unitOfWork;
-        public AppConfigService(IUnitOfWork unitOfWork)
+        private readonly IHubContext<ConfigHub> _hubContext;
+
+        public AppConfigService(IUnitOfWork unitOfWork, IHubContext<ConfigHub> hubContext)
         {
             _unitOfWork = unitOfWork;
+            _hubContext = hubContext;
         }
 
         public async Task<bool> AddAppConfigAsync(AppConfiguration appConfiguration)
         {
-            return await _unitOfWork.AppConfigWrite.AddAsync(appConfiguration);
+            //return await _unitOfWork.AppConfigWrite.AddAsync(appConfiguration);
+
+            var result = await _unitOfWork.AppConfigWrite.AddAsync(appConfiguration);
+
+            if (result)
+            {
+                // Ekleme başarılı ise SignalR ile istemcilere bildirim gönder
+               await _hubContext.Clients.All.SendAsync("UpdateConfig", appConfiguration.ApplicationName);
+
+            }
+
+            return result;
         }
 
         public bool DeleteAppConfig(AppConfiguration appConfiguration)
         {
-            return _unitOfWork.AppConfigWrite.Delete(appConfiguration);
+            //return _unitOfWork.AppConfigWrite.Delete(appConfiguration);
+            var result = _unitOfWork.AppConfigWrite.Delete(appConfiguration);
+
+            if (result)
+            {
+                // Silme işlemi başarılı ise SignalR ile bildirim gönder
+                _hubContext.Clients.All.SendAsync("UpdateConfig", appConfiguration.ApplicationName);
+            }
+
+            return result;
         }
 
         public async Task<AppConfiguration> GetAppConfigByNameAsync(string name)
@@ -46,7 +71,16 @@ namespace SettingManagerApp.Persistence.Concretes
 
         public bool UpdateAppConfig(AppConfiguration appConfiguration)
         {
-            return _unitOfWork.AppConfigWrite.Update(appConfiguration);
+            //return _unitOfWork.AppConfigWrite.Update(appConfiguration);
+            var result = _unitOfWork.AppConfigWrite.Update(appConfiguration);
+
+            if (result)
+            {
+                // Güncelleme başarılı ise SignalR ile bildirim gönder
+                _hubContext.Clients.All.SendAsync("UpdateConfig", appConfiguration.ApplicationName);
+            }
+
+            return result;
         }
 
         public async Task<T?> GetValueAsync<T>(string name) where T : struct

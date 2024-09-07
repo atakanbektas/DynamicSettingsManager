@@ -74,5 +74,16 @@ namespace SettingManagerApp.MVCUI.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> GetUpdatedConfigs(string appName)
+        {
+
+           var configs = await _appConfigService.GetAppConfigsByApplicationNameAsync(appName);
+
+            // Verileri JSON formatında döndür
+            return Json(configs);
+        }
+
+
     }
 }
