@@ -8,7 +8,7 @@ namespace SettingsManagerApp.Application.Repositories
 {
     public interface IReadRepository<T> : IRepository<T> where T : class
     {
-        Task<IQueryable<T>> GetAllAsync();
+        IQueryable<T> GetAll();
         Task<T> GetByKeysAsync(params object?[]? keyValues);
 
     }

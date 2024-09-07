@@ -9,8 +9,9 @@ namespace SettingsManagerApp.Application.Repositories
     public interface IWriteRepository<T> : IRepository<T> where T : class
     {
         Task<bool> AddAsync(T entity);
-        Task<bool> UpdateAsync(T entity);
-        Task<bool> DeleteAsync(T entity);
-        Task<int> SaveAsync(T entity);
+        bool Update(T entity);
+        bool Delete(T entity);
+        Task<int> SaveAsync();
+        int Save();
     }
 }

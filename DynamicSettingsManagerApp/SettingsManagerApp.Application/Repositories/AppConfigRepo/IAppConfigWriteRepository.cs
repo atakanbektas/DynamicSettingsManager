@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SettingsManagerApp.Application.Repositories.AppConfigRepo
 {
-    public interface IAppConfigWriteRepository:IReadRepository<AppConfiguration>
+    public interface IAppConfigWriteRepository:IWriteRepository<AppConfiguration>
     {
 
     }

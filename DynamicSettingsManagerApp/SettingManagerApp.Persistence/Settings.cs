@@ -8,6 +8,6 @@ namespace SettingManagerApp.Persistence
 {
     public static class Settings
     {
-        public static string ConnString = "Server=.;Database=AppConfigDB;Integrated Security=True;";
+        public static string ConnString = "Server=.;Database=AppConfigDB;Integrated Security=True;Trust Server Certificate=True;";
     }
 }

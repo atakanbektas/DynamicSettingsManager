@@ -12,12 +12,12 @@ namespace SettingManagerApp.Persistence.Context
     {
         public SettingManagerDBContext()
         {
-                
+
         }
 
         public SettingManagerDBContext(DbContextOptions opt) : base(opt)
         {
-            
+
         }
 
         public DbSet<AppConfiguration> AppConfigurations { get; set; }
@@ -36,14 +36,33 @@ namespace SettingManagerApp.Persistence.Context
             modelBuilder.Entity<AppConfiguration>().HasData(
                 new AppConfiguration()
                 {
-                    Name= "test",
-                    Type= "string",
-                    Value = "test",
-                    IsActive= true,
-                    ApplicationName = "test",
+                    Id = 1,
+                    Name = "SiteName",
+                    Type = "string",
+                    Value = "soty.io",
+                    IsActive = true,
+                    ApplicationName = "SERVICE-A",
+                },
+
+                new AppConfiguration()
+                {
+                    Id = 2,
+                    Name = "IsBasketEnabled",
+                    Type = "bool",
+                    Value = "1",
+                    IsActive = true,
+                    ApplicationName = "SERVICE-B",
+                },
+
+                new AppConfiguration()
+                {
+                    Id = 3,
+                    Name = "MaxItemCount",
+                    Type = "int",
+                    Value = "50",
+                    IsActive = false,
+                    ApplicationName = "SERVICE-A",
                 });
         }
-
-
     }
 }

@@ -10,10 +10,10 @@ namespace SettingsManagerApp.Application
     public interface IAppConfigService
     {
         Task<bool> AddAppConfigAsync(AppConfiguration appConfiguration);
-        Task<bool> GetAppConfigAsync(AppConfiguration appConfiguration);
-        Task<bool> DeleteAppConfigAsync(AppConfiguration appConfiguration);
-        Task<bool> UpdateAppConfigAsync(int id, AppConfiguration appConfiguration);
+        bool DeleteAppConfig(AppConfiguration appConfiguration);
+        bool UpdateAppConfig(AppConfiguration appConfiguration);
+        IEnumerable<AppConfiguration> GetAppConfigs(string name);
+        Task<AppConfiguration> GetAppConfigByIdAsync(int id);
         Task<AppConfiguration> GetAppConfigByNameAsync(string name);
-        Task<IEnumerable<AppConfiguration>> GetAppConfigsAsync();
     }
 }
