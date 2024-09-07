@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SettingsManagerApp.Application
+namespace SettingsManagerApp.Application.Services
 {
     public interface IAppConfigService
     {

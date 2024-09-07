@@ -2,6 +2,7 @@
 using SettingManagerApp.Persistence.Context;
 using SettingsManagerApp.Application;
 using SettingsManagerApp.Application.Repositories.AppConfigRepo;
+using SettingsManagerApp.Application.Repositories.ProductRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,20 @@ namespace SettingManagerApp.Persistence.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly SettingManagerDBContext _dbContext;
-        public IAppConfigWriteRepository AppConfigWrite { get; }
 
+        public IAppConfigWriteRepository AppConfigWrite { get; }
         public IAppConfigReadRepository AppConfigRead { get; }
 
-        public UnitOfWork(SettingManagerDBContext dbContext, IAppConfigWriteRepository configWrite, IAppConfigReadRepository configRead)
+        public IProductReadRepository ProductRead { get; }
+        public IProductWriteRepository ProductWrite { get; }
+
+        public UnitOfWork(SettingManagerDBContext dbContext, IAppConfigWriteRepository configWrite, IAppConfigReadRepository configRead, IProductReadRepository productRead, IProductWriteRepository productWrite)
         {
             _dbContext = dbContext;
             AppConfigWrite = configWrite;
             AppConfigRead = configRead;
+            ProductRead = productRead;
+            ProductWrite = productWrite;
         }
 
         public void Dispose()

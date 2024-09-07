@@ -6,6 +6,7 @@ using SettingManagerApp.Persistence.Repositories;
 using SettingManagerApp.Persistence.Repositories.AppConfigRepo;
 using SettingsManagerApp.Application;
 using SettingsManagerApp.Application.Repositories.AppConfigRepo;
+using SettingsManagerApp.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace SettingManagerApp.Persistence
             services.AddScoped<IAppConfigWriteRepository, AppConfigWriteRepository>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddDbContext<SettingManagerDBContext>(opt=>opt.UseSqlServer(Settings.ConnString));
+            services.AddDbContext<ProductDBContext>(opt=>opt.UseSqlServer(Settings.ConnStringServiceProduct));
         }
     }
 }

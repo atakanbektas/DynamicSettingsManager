@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using SettingManagerApp.Domain.Entities;
-using SettingsManagerApp.Application;
+using SettingsManagerApp.Application.Services;
 
 namespace SettingManagerApp.MVCUI.Controllers
 {

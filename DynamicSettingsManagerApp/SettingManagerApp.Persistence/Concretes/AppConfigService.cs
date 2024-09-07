@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SettingManagerApp.Domain.Entities;
 using SettingsManagerApp.Application;
+using SettingsManagerApp.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

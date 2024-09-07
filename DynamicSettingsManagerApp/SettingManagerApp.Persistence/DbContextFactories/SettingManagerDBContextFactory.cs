@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SettingManagerApp.Persistence
+namespace SettingManagerApp.Persistence.DbContextFactories
 {
     public class SettingManagerDBContextFactory : IDesignTimeDbContextFactory<SettingManagerDBContext>
     {
