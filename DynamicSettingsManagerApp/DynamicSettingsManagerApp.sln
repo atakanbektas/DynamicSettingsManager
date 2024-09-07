@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.Persisten
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.Infrastructure", "SettingManagerApp.Infrastructure\SettingManagerApp.Infrastructure.csproj", "{1292586C-6763-4805-A6EC-7A368427BADE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.MVCUI", "SettingManagerApp.MVCUI\SettingManagerApp.MVCUI.csproj", "{38637DA4-E39B-4C59-A966-C83F6CF668D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1292586C-6763-4805-A6EC-7A368427BADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1292586C-6763-4805-A6EC-7A368427BADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1292586C-6763-4805-A6EC-7A368427BADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{A94E7A06-1D35-4B92-ABC6-91D19784F52D} = {44B6F495-9538-40BE-B339-F59DAC1F8039}
 		{F73984CC-A2B4-41A7-8E2B-3362C24685F0} = {AC796D82-9494-4137-9612-49C1F8658227}
 		{1292586C-6763-4805-A6EC-7A368427BADE} = {AC796D82-9494-4137-9612-49C1F8658227}
+		{38637DA4-E39B-4C59-A966-C83F6CF668D4} = {726665CF-829A-4BE5-9D9C-241D059CD9F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3938D402-3366-4065-95AF-6DA73E2AC77B}

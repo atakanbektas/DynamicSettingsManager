@@ -12,7 +12,7 @@ namespace SettingsManagerApp.Application
         Task<bool> AddAppConfigAsync(AppConfiguration appConfiguration);
         bool DeleteAppConfig(AppConfiguration appConfiguration);
         bool UpdateAppConfig(AppConfiguration appConfiguration);
-        IEnumerable<AppConfiguration> GetAppConfigs(string name);
+        IEnumerable<AppConfiguration> GetAppConfigs();
         Task<AppConfiguration> GetAppConfigByIdAsync(int id);
         Task<AppConfiguration> GetAppConfigByNameAsync(string name);
     }

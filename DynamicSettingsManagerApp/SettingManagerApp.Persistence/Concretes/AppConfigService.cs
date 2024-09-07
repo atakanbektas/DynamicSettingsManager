@@ -38,11 +38,9 @@ namespace SettingManagerApp.Persistence.Concretes
             return await _unitOfWork.AppConfigRead.GetByKeysAsync(id);
         }
 
-        public IEnumerable<AppConfiguration> GetAppConfigs(string name)
+        public IEnumerable<AppConfiguration> GetAppConfigs()
         {
-            return _unitOfWork.AppConfigRead.GetAll()
-                .Where(x => x.IsActive == true)
-                .Where(x=>x.Name== name);
+            return _unitOfWork.AppConfigRead.GetAll();
         }
 
         public bool UpdateAppConfig(AppConfiguration appConfiguration)

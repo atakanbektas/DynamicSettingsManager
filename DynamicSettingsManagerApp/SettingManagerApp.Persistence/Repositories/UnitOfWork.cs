@@ -17,7 +17,6 @@ namespace SettingManagerApp.Persistence.Repositories
 
         public IAppConfigReadRepository AppConfigRead { get; }
 
-
         public UnitOfWork(SettingManagerDBContext dbContext, IAppConfigWriteRepository configWrite, IAppConfigReadRepository configRead)
         {
             _dbContext = dbContext;

@@ -1,4 +1,5 @@
-﻿using SettingManagerApp.Persistence.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SettingManagerApp.Persistence.Context;
 using SettingsManagerApp.Application.Repositories;
 using System;
 using System.Collections.Generic;
