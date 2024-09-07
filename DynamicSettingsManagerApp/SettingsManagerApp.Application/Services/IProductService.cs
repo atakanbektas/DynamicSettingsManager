@@ -1,4 +1,5 @@
-﻿using SettingManagerApp.Domain.Entities.ProductEntities;
+﻿using SettingManagerApp.Domain.Entities;
+using SettingManagerApp.Domain.Entities.ProductEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,8 @@ namespace SettingsManagerApp.Application.Services
         Task<bool> AddProductAsync(Product product);
         IEnumerable<Product> GetProducts();
         bool DeleteAllProduct();
+
+        Task<T?> GetConfigValue<T>(string key) where T : struct;
+        Task<IEnumerable<AppConfiguration>> GetConfigurationsAsync();
     }
 }

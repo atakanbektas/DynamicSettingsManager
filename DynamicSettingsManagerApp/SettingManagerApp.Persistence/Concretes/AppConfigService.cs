@@ -48,5 +48,54 @@ namespace SettingManagerApp.Persistence.Concretes
         {
             return _unitOfWork.AppConfigWrite.Update(appConfiguration);
         }
+
+        public async Task<T?> GetValueAsync<T>(string name) where T : struct
+        {
+            var config = await _unitOfWork.AppConfigRead.GetAll()!.FirstOrDefaultAsync(x => x.Name == name && x.IsActive == true);
+
+            // Eğer bu isimde config yoksa veya pasifse, null döndür
+            if (config == null)
+            {
+                return null;
+            }
+
+            // Veritabanındaki value değeri string olarak saklanıyor, bu değeri T tipine dönüştürüyoruz
+            string valueAsString = config.Value;
+            return (T)ConvertValueToType(typeof(T), valueAsString);
+        }
+
+        private object ConvertValueToType(Type targetType, string valueAsString)
+        {
+            if (targetType == typeof(int))
+            {
+                return int.Parse(valueAsString);
+            }
+            else if (targetType == typeof(bool))
+            {
+                return bool.Parse(valueAsString);
+            }
+            else if (targetType == typeof(double))
+            {
+                return double.Parse(valueAsString);
+            }
+            else if (targetType == typeof(string))
+            {
+                return valueAsString;  // String ise dönüşüme gerek yok
+            }
+            else
+            {
+                return $"Unsupported type: {targetType.Name}";
+            }
+        }
+
+        public async Task<IEnumerable<AppConfiguration>> GetAppConfigsByApplicationNameAsync(string name)
+        {
+            var config = await _unitOfWork.AppConfigRead.GetAll()
+                .Where(config => config.IsActive == true)
+                .Where(config => config.ApplicationName == name).ToListAsync();
+
+            return config;
+        }
+
     }
 }

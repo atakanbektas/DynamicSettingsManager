@@ -17,10 +17,13 @@ namespace SettingManagerApp.Persistence.Concretes
         private readonly IProductReadRepository _productRead;
         private readonly IProductWriteRepository _productWrite;
 
-        public ProductService(IProductWriteRepository productWrite, IProductReadRepository productRead)
+        private readonly IAppConfigService _appConfigService;
+
+        public ProductService(IProductWriteRepository productWrite, IProductReadRepository productRead, IAppConfigService appConfigService)
         {
             _productWrite = productWrite;
             _productRead = productRead;
+            _appConfigService = appConfigService;
         }
 
         public async Task<bool> AddProductAsync(Product product)
@@ -34,35 +37,21 @@ namespace SettingManagerApp.Persistence.Concretes
             return _productWrite.DeleteAll(allProducts);
         }
 
+
+        public Task<IEnumerable<AppConfiguration>> GetConfigurationsAsync()
+        {
+            return _appConfigService.GetAppConfigsByApplicationNameAsync("SERVICE-PRODUCT");
+        }
+
+        public async Task<T?> GetConfigValue<T>(string key) where T : struct
+        {
+            return await _appConfigService.GetValueAsync<T>(key);
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return _productRead.GetAll();
         }
     }
 
-
-    //public class ProductService : IProductService
-    //{
-    //    private readonly IUnitOfWork _unitOfWork;
-    //    public ProductService(IUnitOfWork unitOfWork)
-    //    {
-    //        _unitOfWork = unitOfWork;
-    //    }
-
-    //    public async Task<bool> AddProductAsync(Product product)
-    //    {
-    //        return await _unitOfWork.ProductWrite.AddAsync(product);
-    //    }
-
-    //    public bool DeleteAllProduct()
-    //    {
-    //        var allProducts = _unitOfWork.ProductRead.GetAll();
-    //        return _unitOfWork.ProductWrite.DeleteAll(allProducts);
-    //    }
-
-    //    public IEnumerable<Product> GetProducts()
-    //    {
-    //        return _unitOfWork.ProductRead.GetAll();
-    //    }
-    //}
 }

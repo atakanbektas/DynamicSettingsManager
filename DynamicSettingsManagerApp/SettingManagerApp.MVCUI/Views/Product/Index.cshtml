@@ -1,46 +1,74 @@
-﻿@model IEnumerable<SettingManagerApp.Domain.Entities.ProductEntities.Product>
+﻿@model ProductConfigVM
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Ürün Listesi</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-success">Ürün Oluştur</a>
-</p>
-<p>
-    <a asp-action="DeleteAll" class="btn btn-danger">Tümünü Sil</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="d-flex justify-content-center bg-warning gap-3 flex-wrap border border-secondary border-5">
+<h1 class="text-center">Configuration Settings</h1>
+    <table class="table table-bordered table-hover  color-white">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <img width="100" height="100" alt="photo" src="@item.PhotoURL" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
+                <th class="text-center">Service Name</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Value</th>
+                <th class="text-center">Type</th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var config in Model.Configurations)
+            {
+                <tr>
+                    <td class="text-center">@config.ApplicationName</td>
+                    <td class="text-center">@config.Name</td>
+                    <td class="text-center">@config.Value</td>
+                    <td class="text-center">@config.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<hr />
+<div class="text-center">
+    <h1>Ürün Listesi</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-success">Ürün Oluştur</a>
+        <a asp-action="DeleteAll" class="btn btn-danger">Tümünü Sil</a>
+    </p>
+
+
+
+
+    <h2>Products</h2>
+
+    <div class="d-flex flex-wrap">
+        @foreach (var product in Model.Products)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="@product.PhotoURL" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                <a href="#" class="btn btn-primary">@product.Price ₺</a>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+
+    </div>
+
+</div>
+
+
+<!-- Index.cshtml -->
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        alert('@TempData["AlertMessage"]');
+    </script>
+}
+
+
+

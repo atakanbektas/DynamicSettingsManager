@@ -15,5 +15,8 @@ namespace SettingsManagerApp.Application.Services
         IEnumerable<AppConfiguration> GetAppConfigs();
         Task<AppConfiguration> GetAppConfigByIdAsync(int id);
         Task<AppConfiguration> GetAppConfigByNameAsync(string name);
+
+        Task<T?> GetValueAsync<T>(string name) where T : struct;
+        Task<IEnumerable<AppConfiguration>> GetAppConfigsByApplicationNameAsync(string name);
     }
 }

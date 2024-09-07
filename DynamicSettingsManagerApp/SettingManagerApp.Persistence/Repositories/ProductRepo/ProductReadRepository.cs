@@ -1,5 +1,9 @@
-﻿using SettingManagerApp.Domain.Entities.ProductEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using SettingManagerApp.Domain.Entities;
+using SettingManagerApp.Domain.Entities.ProductEntities;
 using SettingManagerApp.Persistence.Context;
+using SettingsManagerApp.Application.Repositories;
+using SettingsManagerApp.Application.Repositories.AppConfigRepo;
 using SettingsManagerApp.Application.Repositories.ProductRepo;
 using System;
 using System.Collections.Generic;

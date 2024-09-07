@@ -16,7 +16,7 @@ namespace SettingManagerApp.MVCUI.Controllers
         }
 
         //Tüm Configlerin Listelendiği Action
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var configs = _appConfigService.GetAppConfigs();
             return View(configs);
