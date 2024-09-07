@@ -11,7 +11,7 @@ namespace SettingManagerApp.Persistence.Repositories.ProductRepo
 {
     public class ProductReadRepository : ReadRepository<Product>, IProductReadRepository
     {
-        public ProductReadRepository(SettingManagerDBContext context) : base(context)
+        public ProductReadRepository(ProductDBContext context) : base(context)
         {
 
         }

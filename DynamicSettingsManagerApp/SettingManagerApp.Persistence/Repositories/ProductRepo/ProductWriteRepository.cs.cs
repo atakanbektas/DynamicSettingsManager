@@ -12,18 +12,25 @@ namespace SettingManagerApp.Persistence.Repositories.ProductRepo
 {
     public class ProductWriteRepository : WriteRepository<Product>, IProductWriteRepository
     {
-        public ProductWriteRepository(SettingManagerDBContext context) : base(context)
+        public ProductWriteRepository(ProductDBContext context) : base(context)
         {
         }
 
         public bool DeleteAll(IEnumerable<Product> products)
         {
-            if (products != null)
+            if (products == null)
             {
-                Tablo.RemoveRange(products);
-                return true;
+                return false;
             }
-            return false;
+            foreach (var item in products)
+            {
+                if (item != null)
+                {
+                    Tablo.Remove(item);
+                    _context.SaveChanges();
+                }
+            }
+            return true;
         }
     }
 }

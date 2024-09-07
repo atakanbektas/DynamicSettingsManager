@@ -13,19 +13,21 @@ namespace SettingManagerApp.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly SettingManagerDBContext _dbContext;
-
+        private readonly SettingManagerDBContext _dbAppConfig;
         public IAppConfigWriteRepository AppConfigWrite { get; }
         public IAppConfigReadRepository AppConfigRead { get; }
 
+        private readonly ProductDBContext _dbProduct;
         public IProductReadRepository ProductRead { get; }
         public IProductWriteRepository ProductWrite { get; }
 
-        public UnitOfWork(SettingManagerDBContext dbContext, IAppConfigWriteRepository configWrite, IAppConfigReadRepository configRead, IProductReadRepository productRead, IProductWriteRepository productWrite)
+        public UnitOfWork(SettingManagerDBContext dbAppConfig, IAppConfigWriteRepository configWrite, IAppConfigReadRepository configRead, ProductDBContext dbProduct , IProductReadRepository productRead, IProductWriteRepository productWrite)
         {
-            _dbContext = dbContext;
+            _dbAppConfig = dbAppConfig;
             AppConfigWrite = configWrite;
             AppConfigRead = configRead;
+
+            _dbProduct = dbProduct;
             ProductRead = productRead;
             ProductWrite = productWrite;
         }
@@ -40,7 +42,8 @@ namespace SettingManagerApp.Persistence.Repositories
         {
             if (disposing)
             {
-                _dbContext.Dispose();
+                _dbProduct.Dispose();
+                _dbAppConfig.Dispose();
             }
         }
     }

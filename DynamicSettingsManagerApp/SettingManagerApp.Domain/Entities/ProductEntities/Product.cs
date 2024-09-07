@@ -9,16 +9,14 @@ namespace SettingManagerApp.Domain.Entities.ProductEntities
     // TEST AMAÇLI OLDUĞUNDAN DEFAULT DEĞERLER ATANDI.
     public class Product
     {
-        static int counter = 1;
-
-        public Product()
-        {
-            counter++; 
-        }
-
         public int Id { get; set; }
 
-        public string Name { get; set; } = "ÜRÜN - " + counter;
+        private string _name = "ÜRÜN";
+        public string Name
+        {
+            get => $"{_name}{Id}";
+            set => _name = value;   
+        }
 
         public string PhotoURL { get; set; } = "https://cdn.secilstore.com/docs/images/product/half/10002411510019/0312/1.webp?x=gomzx";
 

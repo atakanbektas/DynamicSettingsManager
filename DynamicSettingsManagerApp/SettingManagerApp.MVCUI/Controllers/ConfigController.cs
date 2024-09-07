@@ -8,7 +8,7 @@ namespace SettingManagerApp.MVCUI.Controllers
 {
     public class ConfigController : Controller
     {
-        IAppConfigService _appConfigService;
+        private readonly IAppConfigService _appConfigService;
 
         public ConfigController(IAppConfigService appConfigService)
         {

@@ -15,7 +15,7 @@ namespace SettingsManagerApp.Application
         IAppConfigWriteRepository AppConfigWrite { get; }
 
         //PRODUCT
-        IProductReadRepository ProductRead { get; }
-        IProductWriteRepository ProductWrite { get; }
+        //IProductReadRepository ProductRead { get; }
+        //IProductWriteRepository ProductWrite { get; }
     }
 }

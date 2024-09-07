@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SettingManagerApp.Domain.Entities;
+using SettingManagerApp.Domain.Entities.ProductEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,24 @@ namespace SettingManagerApp.Persistence.Context
 
         }
 
-        public SettingManagerDBContext(DbContextOptions opt) : base(opt)
+        public SettingManagerDBContext(DbContextOptions<SettingManagerDBContext> opt) : base(opt)
         {
 
         }
 
+
         public DbSet<AppConfiguration> AppConfigurations { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(Settings.ConnString);
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //=> optionsBuilder.UseSqlServer(Settings.ConnString);
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)  // Eğer DI tarafından ayarlanmamışsa çalışır
+        //    {
+        //        optionsBuilder.UseSqlServer(Settings.ConnString);
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

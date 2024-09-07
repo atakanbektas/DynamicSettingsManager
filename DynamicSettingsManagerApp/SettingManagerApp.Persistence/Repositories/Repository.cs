@@ -11,12 +11,25 @@ namespace SettingManagerApp.Persistence.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly SettingManagerDBContext _context;
+        protected readonly DbContext _context;
 
-        public Repository(SettingManagerDBContext context)
+        public Repository(DbContext context)
         {
             _context = context;
         }
+
+        //protected readonly SettingManagerDBContext _context;
+        //protected readonly ProductDBContext _contextProduct;
+
+        //public Repository(SettingManagerDBContext context)
+        //{
+        //    _context = context;
+        //}
+
+        //public Repository(ProductDBContext contextProduct)
+        //{
+        //    _contextProduct = contextProduct;
+        //}
 
         public DbSet<T> Tablo => _context.Set<T>();
     }

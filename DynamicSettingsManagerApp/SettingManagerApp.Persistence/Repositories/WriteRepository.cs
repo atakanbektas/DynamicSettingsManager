@@ -12,10 +12,8 @@ namespace SettingManagerApp.Persistence.Repositories
 {
     public class WriteRepository<T> : Repository<T>, IWriteRepository<T> where T : class
     {
-        public WriteRepository(SettingManagerDBContext context) : base(context)
-        {
-
-        }
+        public WriteRepository(SettingManagerDBContext context) : base(context) { }
+        public WriteRepository(ProductDBContext context) : base(context) { }
 
         public async Task<bool> AddAsync(T entity)
         {

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SettingManagerApp.Domain.Entities.ProductEntities.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ürün Listesi</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Ürün Oluştur</a>
+</p>
+<p>
+    <a asp-action="DeleteAll" class="btn btn-danger">Tümünü Sil</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img width="100" height="100" alt="photo" src="@item.PhotoURL" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

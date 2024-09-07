@@ -11,10 +11,8 @@ namespace SettingManagerApp.Persistence.Repositories
 {
     public class ReadRepository<T> : Repository<T>, IReadRepository<T> where T : class
     {
-        public ReadRepository(SettingManagerDBContext context) : base(context)
-        {
-
-        }
+        public ReadRepository(SettingManagerDBContext context) : base(context) { }
+        public ReadRepository(ProductDBContext context) : base(context) { }
 
         public IQueryable<T> GetAll()
         {
