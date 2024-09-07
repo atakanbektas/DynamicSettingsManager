@@ -9,15 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{726665CF-829A-4BE5-9D9C-241D059CD9F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsManagerApp.Application", "SettingsManagerApp.Application\SettingsManagerApp.Application.csproj", "{DBAAF557-888F-4E4D-BD1F-35697390D1DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsManagerApp.Application", "SettingsManagerApp.Application\SettingsManagerApp.Application.csproj", "{DBAAF557-888F-4E4D-BD1F-35697390D1DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.Domain", "SettingManagerApp.Domain\SettingManagerApp.Domain.csproj", "{A94E7A06-1D35-4B92-ABC6-91D19784F52D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingManagerApp.Domain", "SettingManagerApp.Domain\SettingManagerApp.Domain.csproj", "{A94E7A06-1D35-4B92-ABC6-91D19784F52D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.Persistence", "SettingManagerApp.Persistence\SettingManagerApp.Persistence.csproj", "{F73984CC-A2B4-41A7-8E2B-3362C24685F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingManagerApp.Persistence", "SettingManagerApp.Persistence\SettingManagerApp.Persistence.csproj", "{F73984CC-A2B4-41A7-8E2B-3362C24685F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.Infrastructure", "SettingManagerApp.Infrastructure\SettingManagerApp.Infrastructure.csproj", "{1292586C-6763-4805-A6EC-7A368427BADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingManagerApp.Infrastructure", "SettingManagerApp.Infrastructure\SettingManagerApp.Infrastructure.csproj", "{1292586C-6763-4805-A6EC-7A368427BADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingManagerApp.MVCUI", "SettingManagerApp.MVCUI\SettingManagerApp.MVCUI.csproj", "{38637DA4-E39B-4C59-A966-C83F6CF668D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingManagerApp.MVCUI", "SettingManagerApp.MVCUI\SettingManagerApp.MVCUI.csproj", "{38637DA4-E39B-4C59-A966-C83F6CF668D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C660D8B1-7A22-4D82-A086-C8F0C753865F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsManagerApp.Tests", "SettingsManagerApp.Tests\SettingsManagerApp.Tests.csproj", "{F376E4C9-E65E-42CD-B110-3B52050BE877}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38637DA4-E39B-4C59-A966-C83F6CF668D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F376E4C9-E65E-42CD-B110-3B52050BE877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F376E4C9-E65E-42CD-B110-3B52050BE877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F376E4C9-E65E-42CD-B110-3B52050BE877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F376E4C9-E65E-42CD-B110-3B52050BE877}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{F73984CC-A2B4-41A7-8E2B-3362C24685F0} = {AC796D82-9494-4137-9612-49C1F8658227}
 		{1292586C-6763-4805-A6EC-7A368427BADE} = {AC796D82-9494-4137-9612-49C1F8658227}
 		{38637DA4-E39B-4C59-A966-C83F6CF668D4} = {726665CF-829A-4BE5-9D9C-241D059CD9F0}
+		{F376E4C9-E65E-42CD-B110-3B52050BE877} = {C660D8B1-7A22-4D82-A086-C8F0C753865F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3938D402-3366-4065-95AF-6DA73E2AC77B}

@@ -5,9 +5,24 @@
 }
 
 <h1>Konfigurasyon Listesi</h1>
+<!-- Filtreleme Formu -->
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-9 col-md-6 col-sm-4">
+                <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="İsim Giriniz" />
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-8">
+                <button type="submit" class="btn btn-primary">Filtrele</button>
+                <a asp-action="Index" class="btn btn-secondary">Filtreleri Temizle</a>
+            </div>
+        </div>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    </div>
+</form>
+
+<p class="mt-3">
+    <a class="btn btn-primary" asp-action="Create">Yeni Ayar Ekle</a>
 </p>
 <table class="table">
     <thead>
@@ -55,14 +70,14 @@
                         if (item.IsActive)
                         {
                             <a class="btn btn-success" asp-action="ToggleActiveProp" asp-route-id="@item.Id">
-                            Pasifleştir
+                                Pasifleştir
                             </a>
 
                         }
                         else
                         {
                             <a class="btn btn-danger" asp-action="ToggleActiveProp" asp-route-id="@item.Id">
-                            Aktifleştir
+                                Aktifleştir
                             </a>
                         }
                     }

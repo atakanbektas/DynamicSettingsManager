@@ -16,9 +16,16 @@ namespace SettingManagerApp.MVCUI.Controllers
         }
 
         //Tüm Configlerin Listelendiği Action
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
             var configs = _appConfigService.GetAppConfigs();
+
+            // Eğer searchTerm varsa, verileri Name alanına göre filtrele
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                configs = configs.Where(c => c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+            }
+
             return View(configs);
         }
 
