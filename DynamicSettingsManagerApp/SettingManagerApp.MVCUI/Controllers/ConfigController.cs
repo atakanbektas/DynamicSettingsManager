@@ -38,18 +38,41 @@ namespace SettingManagerApp.MVCUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateConfigAsync(AppConfiguration model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && await _appConfigService.AddAppConfigAsync(model))
             {
-                var isAdded = await _appConfigService.AddAppConfigAsync(model);
-                if (isAdded)
-                {
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
             }
 
-            // Model geçerli değilse formu tekrar göster
+            // Model geçerli değilse veya ekleme sırasında hata olursa formu tekrar göster.
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var config = await _appConfigService.GetAppConfigByIdAsync(id);
+
+            if (config == null)
+            {
+                return NotFound();
+            }
+
+            return View(config);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditConfig(AppConfiguration model)
+        {
+            if (ModelState.IsValid && _appConfigService.UpdateAppConfig(model))
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Güncelleme başarısız olursa formu tekrar göster
+            return View(model);
+        }
+
 
     }
 }
