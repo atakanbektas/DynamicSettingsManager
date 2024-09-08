@@ -6,8 +6,7 @@
 - [Kurulum](#kurulum)
 - [Kullanım](#kullanım)
 - [Teknolojiler](#teknolojiler)
-- [Katkıda Bulunanlar](#katkıda-bulunanlar)
-- [Lisans](#lisans)
+- [Proje Geliştiricisi](#proje-geliştiricisi)
 
 ## Kurulum
 
@@ -34,7 +33,30 @@ Projeyi yerel ortamda çalıştırmak için aşağıdaki adımları izleyin:
 
 
 ## Teknolojiler
-ASP.NET Core MVC - Web uygulaması geliştirmek için kullanılan framework.
-Entity Framework Core - Veritabanı işlemleri için kullanılan ORM aracı.
-SignalR - Gerçek zamanlı güncellemeler için kullanılan framework.
-In-Memory Cache - Geçici veri saklama için kullanılan cache mekanizması.
+- **ASP.NET Core MVC**  
+  Web uygulaması geliştirmek için kullanılan framework.
+  
+- **Entity Framework Core**  
+  Veritabanı işlemleri için kullanılan ORM aracı.
+  
+- **SignalR**  
+  Gerçek zamanlı güncellemeler için kullanılan framework.
+  
+- **In-Memory Cache**  
+  Geçici veri saklama için kullanılan cache mekanizması.
+  
+- **xUnit**  
+  Birim testleri için kullanılan test framework'ü.
+  
+- **Soğan Mimarisi (Onion Architecture)**  
+  Katmanlı mimari yapısını destekleyen ve bağımlılıkları azaltan bir mimari.
+  
+- **Repository Design Pattern**  
+  Veritabanı işlemlerini soyutlayarak daha temiz ve sürdürülebilir kod yapısı sağlayan tasarım deseni.
+  
+- **MSSQL**  
+  Projede kullanılan ilişkisel veritabanı yönetim sistemi.
+
+
+  ### Teknolojiler
+  ATAKAN BEKTAŞ
