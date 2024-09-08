@@ -56,7 +56,7 @@ namespace SettingManagerApp.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ApplicationName = "SERVICE-A",
+                            ApplicationName = "SERVICE-PRODUCT",
                             IsActive = true,
                             Name = "SiteName",
                             Type = "string",
@@ -65,7 +65,7 @@ namespace SettingManagerApp.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            ApplicationName = "SERVICE-B",
+                            ApplicationName = "SERVICE-PRODUCT",
                             IsActive = true,
                             Name = "IsBasketEnabled",
                             Type = "bool",
@@ -74,11 +74,29 @@ namespace SettingManagerApp.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            ApplicationName = "SERVICE-A",
-                            IsActive = false,
+                            ApplicationName = "SERVICE-OTHER",
+                            IsActive = true,
                             Name = "MaxItemCount",
                             Type = "int",
                             Value = "50"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationName = "SERVICE-PRODUCT",
+                            IsActive = false,
+                            Name = "Template",
+                            Type = "string",
+                            Value = "dark"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ApplicationName = "SERVICE-PRODUCT",
+                            IsActive = true,
+                            Name = "MaxProductCount",
+                            Type = "int",
+                            Value = "5"
                         });
                 });
 #pragma warning restore 612, 618

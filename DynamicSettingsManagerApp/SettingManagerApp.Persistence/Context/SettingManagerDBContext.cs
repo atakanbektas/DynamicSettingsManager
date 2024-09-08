@@ -51,7 +51,7 @@ namespace SettingManagerApp.Persistence.Context
                     Type = "string",
                     Value = "soty.io",
                     IsActive = true,
-                    ApplicationName = "SERVICE-A",
+                    ApplicationName = "SERVICE-PRODUCT",
                 },
 
                 new AppConfiguration()
@@ -61,7 +61,7 @@ namespace SettingManagerApp.Persistence.Context
                     Type = "bool",
                     Value = "1",
                     IsActive = true,
-                    ApplicationName = "SERVICE-B",
+                    ApplicationName = "SERVICE-PRODUCT",
                 },
 
                 new AppConfiguration()
@@ -70,8 +70,26 @@ namespace SettingManagerApp.Persistence.Context
                     Name = "MaxItemCount",
                     Type = "int",
                     Value = "50",
+                    IsActive = true,
+                    ApplicationName = "SERVICE-OTHER",
+                },
+                new AppConfiguration()
+                {
+                    Id = 4,
+                    Name = "Template",
+                    Type = "string",
+                    Value = "dark",
                     IsActive = false,
-                    ApplicationName = "SERVICE-A",
+                    ApplicationName = "SERVICE-PRODUCT",
+                },
+                new AppConfiguration()
+                {
+                    Id = 5,
+                    Name = "MaxProductCount",
+                    Type = "int",
+                    Value = "5",
+                    IsActive = true,
+                    ApplicationName = "SERVICE-PRODUCT",
                 });
         }
     }
