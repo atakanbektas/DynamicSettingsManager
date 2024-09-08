@@ -26,8 +26,12 @@ Projeyi yerel ortamda çalıştırmak için aşağıdaki adımları izleyin:
 3. **Presentation/MVC projesini çalıştırın**
 
 ## Kullanım
--localhost/config - (Konfigurasyon kayıtlarına gider. Ekleme güncelleme filtreleme gibi işlemler yapabilirsiniz.)
--localhost/product - (Ürün sayfasına gider. Sayfanın en üstünde ürün servisine ait kayıtlar listelenir. Eğer config ayarlarında bir değişiklik olursa sayfa yenilemeden ilgili ayarlar güncellenir. Not : Ürünler default değerler ile rastgele oluşturulmuştur.)
+   - localhost/config  
+     (Konfigurasyon kayıtlarına gider. Ekleme güncelleme filtreleme gibi işlemler yapabilirsiniz.)
+
+   - localhost/product  
+     (Ürün sayfasına gider. Sayfanın en üstünde ürün servisine ait kayıtlar listelenir. Eğer config ayarlarında bir değişiklik olursa sayfa yenilemeden ilgili ayarlar güncellenir. Not: Ürünler default değerler ile rastgele oluşturulmuştur.)
+
 
 ## Teknolojiler
 ASP.NET Core MVC - Web uygulaması geliştirmek için kullanılan framework.
