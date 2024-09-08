@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using SettingManagerApp.Domain.Entities;
 using SettingManagerApp.Persistence.Hubs;
 using SettingsManagerApp.Application;
@@ -17,11 +18,13 @@ namespace SettingManagerApp.Persistence.Concretes
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IHubContext<ConfigHub> _hubContext;
+        private readonly IMemoryCache _cache;
 
-        public AppConfigService(IUnitOfWork unitOfWork, IHubContext<ConfigHub> hubContext)
+        public AppConfigService(IUnitOfWork unitOfWork, IHubContext<ConfigHub> hubContext, IMemoryCache cache)
         {
             _unitOfWork = unitOfWork;
             _hubContext = hubContext;
+            _cache = cache;
         }
 
         public async Task<bool> AddAppConfigAsync(AppConfiguration appConfiguration)
@@ -122,13 +125,45 @@ namespace SettingManagerApp.Persistence.Concretes
             }
         }
 
+
+        private readonly TimeSpan cacheDuration = TimeSpan.FromDays(1);
+
         public async Task<IEnumerable<AppConfiguration>> GetAppConfigsByApplicationNameAsync(string name)
         {
-            var config = await _unitOfWork.AppConfigRead.GetAll()
-                .Where(config => config.IsActive == true)
-                .Where(config => config.ApplicationName == name).ToListAsync();
+            var cacheKey = $"Config_{name}";
 
-            return config;
+            //var config = await _unitOfWork.AppConfigRead.GetAll()
+            //    .Where(config => config.IsActive == true)
+            //    .Where(config => config.ApplicationName == name).ToListAsync();
+
+            try
+            {
+
+              
+                // Veritabanından veri çekmeye çalış
+                var configs = await _unitOfWork.AppConfigRead.GetAll()
+                    .Where(config => config.IsActive == true)
+                    .Where(config => config.ApplicationName == name)
+                    .ToListAsync();
+
+                int x = 0;
+                x = x / x;
+
+                // Eğer veri geldiyse cache'e kaydet ve geri dön
+                _cache.Set(cacheKey, configs, cacheDuration);
+                return configs;
+            }
+            catch (Exception)
+            {
+                // Eğer veritabanına erişim başarısız olursa, cache'deki veriyi kullan
+                if (_cache.TryGetValue(cacheKey, out IEnumerable<AppConfiguration> fallbackConfigs))
+                {
+                    return fallbackConfigs;  // Cache'deki veriyi geri dön
+                }
+
+                // Eğer cache'de de veri yoksa boş bir liste dön veya hata fırlat (tercihe bağlı)
+                return Enumerable.Empty<AppConfiguration>();  // Boş liste döndür
+            }
         }
 
     }

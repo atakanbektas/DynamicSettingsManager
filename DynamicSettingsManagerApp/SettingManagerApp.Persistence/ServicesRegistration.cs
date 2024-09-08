@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using SettingManagerApp.Persistence.Concretes;
 using SettingManagerApp.Persistence.Context;
@@ -22,6 +23,8 @@ namespace SettingManagerApp.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
+            services.AddMemoryCache();
+
             services.AddScoped<IAppConfigService, AppConfigService>();
             services.AddScoped<IAppConfigReadRepository, AppConfigReadRepository>();
             services.AddScoped<IAppConfigWriteRepository, AppConfigWriteRepository>();
