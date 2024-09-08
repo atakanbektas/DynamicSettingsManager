@@ -58,5 +58,5 @@ Projeyi yerel ortamda çalıştırmak için aşağıdaki adımları izleyin:
   Projede kullanılan ilişkisel veritabanı yönetim sistemi.
 
 
-  ### Teknolojiler
+  ### Proje Geliştiricisi
   ATAKAN BEKTAŞ
