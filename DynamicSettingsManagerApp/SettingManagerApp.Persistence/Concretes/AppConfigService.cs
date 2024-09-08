@@ -131,26 +131,21 @@ namespace SettingManagerApp.Persistence.Concretes
         public async Task<IEnumerable<AppConfiguration>> GetAppConfigsByApplicationNameAsync(string name)
         {
             var cacheKey = $"Config_{name}";
-
-            //var config = await _unitOfWork.AppConfigRead.GetAll()
-            //    .Where(config => config.IsActive == true)
-            //    .Where(config => config.ApplicationName == name).ToListAsync();
-
             try
             {
-
-              
                 // Veritabanından veri çekmeye çalış
                 var configs = await _unitOfWork.AppConfigRead.GetAll()
                     .Where(config => config.IsActive == true)
                     .Where(config => config.ApplicationName == name)
                     .ToListAsync();
 
-                int x = 0;
-                x = x / x;
+                //Cache test ederken kullanılabilir.
+                //int x = 0;
+                //x = x / x;
 
-                // Eğer veri geldiyse cache'e kaydet ve geri dön
+                // Eğer veri geldiyse cache'e kaydet
                 _cache.Set(cacheKey, configs, cacheDuration);
+
                 return configs;
             }
             catch (Exception)
